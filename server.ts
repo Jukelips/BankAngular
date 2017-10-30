@@ -1,13 +1,34 @@
 // Get dependencies
-const express = require('express');
+// const express = require('express');
+import * as express from 'express';
+import * as session from 'express-session';
 const path = require('path');
 const http = require('http');
+// const session = require('express-session');
 const bodyParser = require('body-parser');
+const MongoStore = require('connect-mongo')(session);
 
 // Get our API routes
-const api = require('./server/routes/api.ts');
+const api = require('./server/routes/api');
 
 const app = express();
+
+const mongoose = require('mongoose');
+const url = 'mongodb://localhost:27017/bankangular';
+const db = mongoose.connection;
+
+mongoose.connect(url, function(err) {
+  if (err) { throw err; }
+});
+
+app.use(session({
+  // secret: 'yolo',
+  resave: true,
+  saveUninitialized: false,
+  store: new MongoStore({
+    mongooseConnection: db
+  })
+}));
 
 // Parsers for POST data
 app.use(bodyParser.json());
