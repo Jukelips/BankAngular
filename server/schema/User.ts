@@ -1,6 +1,7 @@
+///<reference path="../routes/register.ts"/>
 /**
  * Created by Adrien on 30/10/2017.
- */
+
 import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcrypt';
 //  import { NodeModule } from '@types/node';
@@ -64,4 +65,4 @@ UserSchema.pre('save', function (next) {
 
 
 const User = mongoose.model('User', UserSchema);
-module.exports = User;
+ */

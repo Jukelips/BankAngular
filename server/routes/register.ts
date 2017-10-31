@@ -1,9 +1,14 @@
 /**
  * Created by Adrien on 30/10/2017.
- */
+
 // const express = express();
 // const router  = express.Router();
-const User = require('/src/schema/User');
+import * as User from '../schema/User';
+
+
+let router: express.Router;
+router = express.Router();
+
 
 router.post('/register', function (err, req, res, next) {
   console.log('coucou : ' + req.body.password);
@@ -65,3 +70,4 @@ router.get('/logout', function (req, res, next) {
     });
   }
 });
+ */
